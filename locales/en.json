@@ -1,0 +1,15 @@
+{
+  "Landing": {
+    "title": "Welcome to Our App",
+    "getStarted": "Get Started"
+  },
+  "Login": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login"
+  },
+  "Home": {
+    "welcome": "Welcome to Home Page",
+    "service1": "Service 1"
+  }
+}
