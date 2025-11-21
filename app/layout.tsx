@@ -1,8 +1,7 @@
-'use client';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { NextIntlClientProvider } from "next-intl";
-import en from '../locales/en.json';
+import Providers from "./Providers";
+import en from "../locales/en.json";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,13 +13,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: "Your App",
+  description: "Example App",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider messages={en} locale="en">
-          {children}
-        </NextIntlClientProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Providers messages={en}>{children}</Providers>
       </body>
     </html>
   );
