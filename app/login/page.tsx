@@ -96,7 +96,7 @@ export default function LoginPage() {
       <div className="absolute top-6 right-12 z-50" ref={dropdownRef}>
         <div
           onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-          className="flex items-center cursor-pointer text-gray-500"
+          className="flex items-center cursor-pointer text-gray-500 font-medium select-none"
         >
           <span>{language}</span>
           <ExpandMoreIcon className="text-gray-600" />
@@ -114,7 +114,7 @@ export default function LoginPage() {
               className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
               onClick={() => selectLanguage("hi")}
             >
-              {t("hindi")}
+              {"हिंदी"}
             </div>
           </div>
         )}
