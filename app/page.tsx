@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
@@ -45,6 +46,7 @@ export default function LandingPage() {
   }, []);
 
   const toggleDropdown = () => setLangDropdownOpen(!langDropdownOpen);
+  const [getStartedLoading, setGetStartedLoading] = useState(false);
   const selectLanguage = (code: "en" | "hi") => {
     document.cookie = `locale=${code}; path=/`;
     localStorage.setItem("locale", code);
@@ -128,11 +130,23 @@ export default function LandingPage() {
           sx={{
             backgroundColor: "#FF523B",
             "&:hover": { backgroundColor: "#e04430" },
+            textTransform: "none",
+            minWidth: 160,
           }}
           color="error"
-          onClick={() => router.push("/login")}
+          onClick={() => {
+            setGetStartedLoading(true);
+            router.push("/login");
+          }}
           style={{ padding: "8px 20px", fontSize: "14px" }}
         >
+          {getStartedLoading && (
+            <CircularProgress
+              size={18}
+              color="inherit"
+              style={{ marginRight: 8 }}
+            />
+          )}
           {t("getStarted")}
         </Button>
       </div>

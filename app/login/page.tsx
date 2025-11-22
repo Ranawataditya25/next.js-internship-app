@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
@@ -51,10 +52,15 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const togglePassword = () => setShowPassword(!showPassword);
 
   const handleLogin = async () => {
+    if (loading) return;
+    setLoading(true);
+    setLoginError(null);
     const res = await signIn("credentials", {
       redirect: false,
       email,
@@ -63,8 +69,8 @@ export default function LoginPage() {
     });
 
     if (res?.error) {
-      console.log("Login failed:", res.error);
-      alert("Invalid email or password");
+      setLoginError(t("invalidCredentials"));
+      setLoading(false);
       return;
     }
 
@@ -137,8 +143,39 @@ export default function LoginPage() {
         className="w-2/3 flex flex-col justify-center px-34"
         style={{ background: "#EAEAEA" }}
       >
-        <h2 className="text-4xl font-bold mb-2 text-gray-700">{t("login")}</h2>
+        <h2 className="text-4xl font-bold mb-2 text-gray-700">{t("signIn")}</h2>
         <p className="text-gray-500 mb-10 ml-2">{t("enterCredentials")}</p>
+
+        {loginError && (
+          <div className="w-full max-w-md ml-2 mb-4">
+            <div className="flex items-start gap-3 p-3 rounded-md bg-red-50 border border-red-200 text-red-800">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mt-0.5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.257 3.099c.765-1.36 2.68-1.36 3.444 0l5.516 9.8A1.75 1.75 0 0116.944 16H3.056a1.75 1.75 0 01-1.273-2.101l5.474-9.8zM9 7a1 1 0 112 0v3a1 1 0 11-2 0V7zm1 7a1.25 1.25 0 100-2.5A1.25 1.25 0 0010 14z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <div className="text-sm">
+                <div className="font-medium">{t("invalidCredentials")}</div>
+                <div className="text-xs text-red-700 mt-0.5">
+                  {t("pleaseCheck")}{" "}
+                </div>
+              </div>
+              <button
+                className="ml-auto text-red-600"
+                onClick={() => setLoginError(null)}
+              >
+                {t("dismiss")}
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="w-full max-w-md ml-2">
           <label className="block font-bold text-gray-700 mb-1">
@@ -184,6 +221,7 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder={t("passwordPlaceholder")}
+            error={!!loginError}
             sx={{
               backgroundColor: "white",
               borderRadius: "4px",
@@ -221,11 +259,20 @@ export default function LoginPage() {
               sx={{
                 backgroundColor: "#FF523B",
                 "&:hover": { backgroundColor: "#e04430" },
+                textTransform: "none",
+                minWidth: 160,
               }}
               color="error"
               style={{ padding: "8px 40px" }}
               onClick={handleLogin}
             >
+              {loading && (
+                <CircularProgress
+                  size={18}
+                  color="inherit"
+                  style={{ marginRight: 8 }}
+                />
+              )}
               {t("login")}
             </Button>
 
