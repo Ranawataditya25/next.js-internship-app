@@ -89,7 +89,7 @@ export default function ServicePage() {
         </div>
 
         <p className="text-xl text-center">
-          <span className="font-thin text-gray-800">{t("trouble")} </span>
+          <span className="text-gray-800">{t("trouble")} </span>
           <span className="font-bold underline cursor-pointer">
             {t("contactUs")}
           </span>
