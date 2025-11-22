@@ -303,7 +303,25 @@ export default function LoginPage() {
             </span>
           </div>
         </div>
-        <p className="text-gray-500 text-sm mt-8 ml-2">{t("privacyPolicy")}</p>
+        {(() => {
+          const privacy = t("privacyPolicy");
+          const privacyLink = t("privacyPolicyLink");
+          const parts = privacy.includes(privacyLink)
+            ? privacy.split(privacyLink)
+            : [privacy, ""];
+
+          return (
+            <p className="text-gray-500 text-sm mt-8 ml-2">
+              {parts[0]}
+              {privacyLink ? (
+                <span className="underline cursor-pointer text-gray-500">
+                  {privacyLink}
+                </span>
+              ) : null}
+              {parts[1]}
+            </p>
+          );
+        })()}
       </div>
     </div>
   );
