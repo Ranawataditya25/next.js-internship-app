@@ -39,7 +39,7 @@ export default function LandingPage() {
   return (
     <div className="flex h-screen font-sans relative">
       {/* Language switcher */}
-      <div className="absolute top-8 right-12 z-50" ref={dropdownRef}>
+      <div className="absolute top-6 right-12 z-50" ref={dropdownRef}>
         <div
           onClick={toggleDropdown}
           className="flex items-center cursor-pointer select-none text-gray-400 font-medium"
@@ -94,7 +94,7 @@ export default function LandingPage() {
         </h2>
 
         <Image
-          src="/images/onboarding2.png"
+          src="/images/onboarding.png"
           alt="Onboarding Illustration"
           width={400}
           height={300}
@@ -103,6 +103,10 @@ export default function LandingPage() {
 
         <Button
           variant="contained"
+          sx={{
+    backgroundColor: "#FF523B",
+    "&:hover": { backgroundColor: "#e04430" },
+  }}
           color="error"
           onClick={() => router.push("/login")}
           style={{ padding: "8px 20px", fontSize: "14px" }}

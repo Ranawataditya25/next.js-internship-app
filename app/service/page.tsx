@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 export default function ServicePage() {
   const t = useTranslations("Landing");
@@ -23,10 +24,14 @@ export default function ServicePage() {
   return (
     <div className="flex h-screen font-sans relative">
       {/* Top Right Corner */}
-      <div className="absolute top-8 right-12 z-50 flex items-center gap-4">
+      <div className="absolute top-6 right-12 z-50 flex items-center gap-4">
         {/* Sign Out Button */}
         <Button
           variant="contained"
+          sx={{
+            backgroundColor: "#FF523B",
+            "&:hover": { backgroundColor: "#e04430" },
+          }}
           color="error"
           onClick={() => signOut({ callbackUrl: "/login" })}
           style={{
@@ -43,7 +48,7 @@ export default function ServicePage() {
             src="/images/profile.jpg"
             alt="Profile"
             fill
-            className="object-cover"
+            className="object-fit"
           />
         </div>
       </div>
@@ -68,14 +73,44 @@ export default function ServicePage() {
 
       {/* RIGHT PANEL (67%) */}
       <div
-        className="w-2/3 flex flex-col justify-center px-24"
+        className="w-2/3 flex flex-col px-24 py-30"
         style={{ background: "#EAEAEA" }}
       >
         <h2 className="text-2xl font-bold mb-2 text-gray-700">
           Select the type of service you offer
         </h2>
 
-        <div className="w-full max-w-md"></div>
+        <div className="w-full max-w-2xl">
+          <div className="mt-10">
+            <div className="flex items-center justify-between w-full bg-[#F6E9E6] border border-[#E07A67] rounded-xl p-5 cursor-pointer hover:shadow-md transition all">
+              {/* Left Section */}
+              <div className="flex items-center gap-5">
+                {/* Icon Box */}
+                <div className="w-14 h-14 rounded-xl bg-[#FF523B] flex items-center justify-center">
+                  <span className="text-white text-2xl">
+                    <HomeOutlinedIcon />
+                  </span>
+                </div>
+
+                {/* Text Section */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Service 1
+                  </h3>
+                  <p className="text-gray-600 text-sm w-72 leading-snug">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Arrow */}
+              <div>
+                <span className="text-[#E86F5E] text-2xl">➜</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ export default function LoginPage() {
   return (
     <div className="flex h-screen font-sans relative">
       {/* Language Dropdown */}
-      <div className="absolute top-8 right-12 z-50" ref={dropdownRef}>
+      <div className="absolute top-6 right-12 z-50" ref={dropdownRef}>
         <div
           onClick={() => setLangDropdownOpen(!langDropdownOpen)}
           className="flex items-center cursor-pointer text-gray-500"
@@ -187,6 +187,10 @@ export default function LoginPage() {
           <div className="flex items-center justify-between mt-8">
             <Button
               variant="contained"
+              sx={{
+    backgroundColor: "#FF523B",
+    "&:hover": { backgroundColor: "#e04430" },
+  }}
               color="error"
               style={{ padding: "8px 40px" }}
               onClick={handleLogin}
