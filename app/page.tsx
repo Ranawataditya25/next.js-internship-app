@@ -10,10 +10,25 @@ export default function LandingPage() {
   const router = useRouter();
   const t = useTranslations("Landing");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [language, setLanguage] = useState("English"); // default
+  const [languageCode, setLanguageCode] = useState<"en" | "hi">(() => {
+    if (typeof window === "undefined") return "en";
+    const cookieLocale = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("locale="))
+      ?.split("=")[1];
+    const stored = cookieLocale || localStorage.getItem("locale") || "en";
+    return stored === "hi" ? "hi" : "en";
+  });
+  const language = (() => {
+    const fallback = { en: "English", hi: "हिंदी" } as const;
+    try {
+      return languageCode === "hi" ? t("hindi") : t("english");
+    } catch {
+      return fallback[languageCode];
+    }
+  })();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -30,10 +45,17 @@ export default function LandingPage() {
   }, []);
 
   const toggleDropdown = () => setLangDropdownOpen(!langDropdownOpen);
-  const selectLanguage = (lang: string) => {
-    setLanguage(lang);
+  const selectLanguage = (code: "en" | "hi") => {
+    document.cookie = `locale=${code}; path=/`;
+    localStorage.setItem("locale", code);
+    setLanguageCode(code);
     setLangDropdownOpen(false);
-    // Add next-intl routing logic here if needed
+
+    try {
+      window.dispatchEvent(new CustomEvent("localeChange", { detail: code }));
+    } catch {
+      window.location.reload();
+    }
   };
 
   return (
@@ -52,15 +74,15 @@ export default function LandingPage() {
           <div className="absolute right-0 mt-1 w-32 bg-gray-200 shadow z-50">
             <div
               className="w-full text-left px-4 py-2 hover:bg-gray-400 cursor-pointer"
-              onClick={() => selectLanguage("English")}
+              onClick={() => selectLanguage("en")}
             >
-              English
+              {t("english")}
             </div>
             <div
               className="w-full text-left px-4 py-2 hover:bg-gray-400 cursor-pointer"
-              onClick={() => selectLanguage("Hindi")}
+              onClick={() => selectLanguage("hi")}
             >
-              Hindi
+              {t("hindi")}
             </div>
           </div>
         )}
@@ -90,12 +112,12 @@ export default function LandingPage() {
         style={{ background: "#EAEAEA" }}
       >
         <h2 className="text-5xl font-bold mb-12 text-center text-[#5C5C5C]">
-          Let’s start your onboarding — just enter your email address.
+          {t("onboarding")}
         </h2>
 
         <Image
           src="/images/onboarding.png"
-          alt="Onboarding Illustration"
+          alt={t("onboardingAlt")}
           width={400}
           height={300}
           className="mb-14"
@@ -104,9 +126,9 @@ export default function LandingPage() {
         <Button
           variant="contained"
           sx={{
-    backgroundColor: "#FF523B",
-    "&:hover": { backgroundColor: "#e04430" },
-  }}
+            backgroundColor: "#FF523B",
+            "&:hover": { backgroundColor: "#e04430" },
+          }}
           color="error"
           onClick={() => router.push("/login")}
           style={{ padding: "8px 20px", fontSize: "14px" }}

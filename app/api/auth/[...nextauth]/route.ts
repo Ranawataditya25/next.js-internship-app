@@ -11,15 +11,22 @@ const handler = NextAuth({
             },
 
             async authorize(credentials) {
-                // DUMMY LOGIN
+                const DUMMY_EMAIL = process.env.DUMMY_EMAIL || "";
+                const DUMMY_PASSWORD = process.env.DUMMY_PASSWORD || "";
+
+                if (!DUMMY_EMAIL || !DUMMY_PASSWORD) {
+                    console.warn("DUMMY_EMAIL or DUMMY_PASSWORD not set in environment; authorize will always fail.");
+                    return null;
+                }
+
                 if (
-                    credentials?.email === "test@example.com" &&
-                    credentials?.password === "dummyPassword"
+                    credentials?.email === DUMMY_EMAIL &&
+                    credentials?.password === DUMMY_PASSWORD
                 ) {
                     return {
                         id: "1",
                         name: "Test User",
-                        email: "test@example.com",
+                        email: DUMMY_EMAIL,
                     };
                 }
 

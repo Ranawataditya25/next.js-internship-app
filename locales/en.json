@@ -6,6 +6,28 @@
     "info2": "Complete your onboarding in just a few minutes.",
     "trouble": "Having Trouble?",
     "contactUs": "Contact us",
-    "getStarted": "Get Started →"
+    "getStarted": "Get Started →",
+    "onboarding": "Let’s start your onboarding — just enter your email address.",
+    "onboardingAlt": "Onboarding Illustration",
+    "english": "English",
+    "hindi": "Hindi",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "selectService": "Select the type of service you offer",
+    "service1": {
+      "title": "Service 1",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+    },
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "enterCredentials": "Enter your username and password below.",
+    "login": "Login",
+    "forgotPassword": "Forgot Password?",
+    "privacyPolicy": "By continuing, you agree to our Privacy Policy",
+    "brand": "TRIPSAM",
+    "console": "Console",
+    "manageBookings": "Manage your bookings and publish your service"
   }
 }

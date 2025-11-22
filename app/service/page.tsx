@@ -15,7 +15,6 @@ export default function ServicePage() {
 
   if (status === "loading") return null;
 
-  // User NOT logged in → redirect to login page
   if (!session) {
     router.push("/login");
     return null;
@@ -23,9 +22,7 @@ export default function ServicePage() {
 
   return (
     <div className="flex h-screen font-sans relative">
-      {/* Top Right Corner */}
       <div className="absolute top-6 right-12 z-50 flex items-center gap-4">
-        {/* Sign Out Button */}
         <Button
           variant="contained"
           sx={{
@@ -39,14 +36,14 @@ export default function ServicePage() {
             fontSize: "14px",
           }}
         >
-          Sign Out
+          {t("signOut")}
         </Button>
 
         {/* Profile Icon */}
         <div className="w-10 h-10 rounded-full overflow-hidden border relative border-gray-300 cursor-pointer">
           <Image
             src="/images/profile.jpg"
-            alt="Profile"
+            alt={t("profile")}
             fill
             className="object-fit"
           />
@@ -77,7 +74,7 @@ export default function ServicePage() {
         style={{ background: "#EAEAEA" }}
       >
         <h2 className="text-2xl font-bold mb-2 text-gray-700">
-          Select the type of service you offer
+          {t("selectService")}
         </h2>
 
         <div className="w-full max-w-2xl">
@@ -92,19 +89,16 @@ export default function ServicePage() {
                   </span>
                 </div>
 
-                {/* Text Section */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Service 1
+                    {t("service1.title")}
                   </h3>
                   <p className="text-gray-600 text-sm w-72 leading-snug">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
+                    {t("service1.desc")}
                   </p>
                 </div>
               </div>
 
-              {/* Right Arrow */}
               <div>
                 <span className="text-[#E86F5E] text-2xl">➜</span>
               </div>
