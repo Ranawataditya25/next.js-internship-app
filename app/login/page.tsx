@@ -99,11 +99,11 @@ export default function LoginPage() {
           className="flex items-center cursor-pointer text-gray-500"
         >
           <span>{language}</span>
-          <ExpandMoreIcon className="ml-1 text-gray-500" fontSize="small" />
+          <ExpandMoreIcon className="text-gray-600" />
         </div>
 
         {langDropdownOpen && (
-          <div className="absolute right-0 mt-1 w-32 bg-gray-200 border rounded shadow">
+          <div className="absolute right-0 mt-1 w-32 bg-gray-200 shadow z-50 border border-gray-300 rounded-md overflow-hidden">
             <div
               className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
               onClick={() => selectLanguage("en")}
@@ -126,12 +126,12 @@ export default function LoginPage() {
           <h1 className="text-red-500 text-4xl m-0">{t("brand")}</h1>
           <p className="mt-2 ml-4 text-base text-gray-800">{t("console")}</p>
 
-          <p className="mt-20 ml-4 text-3xl text-gray-900 leading-snug">
+          <p className="mt-20 ml-4 text-3xl text-gray-800 leading-snug">
             {t("manageBookings")}
           </p>
         </div>
         <p className="text-xl text-center">
-          <span className="font-light text-black">{t("trouble")} </span>
+          <span className="font-light text-gray-800">{t("trouble")} </span>
           <span className="font-bold underline cursor-pointer">
             {t("contactUs")}
           </span>
@@ -143,7 +143,9 @@ export default function LoginPage() {
         className="w-2/3 flex flex-col justify-center px-34"
         style={{ background: "#EAEAEA" }}
       >
-        <h2 className="text-4xl font-bold mb-2 text-gray-700">{t("signIn")}</h2>
+        <h2 className="text-4xl font-bold mb-2 text-[#5C5C5C]">
+          {t("signIn")}
+        </h2>
         <p className="text-gray-500 mb-10 ml-2">{t("enterCredentials")}</p>
 
         {loginError && (
@@ -178,7 +180,7 @@ export default function LoginPage() {
         )}
 
         <div className="w-full max-w-md ml-2">
-          <label className="block font-bold text-gray-700 mb-1">
+          <label className="block font-bold text-gray-500 mb-1">
             {t("usernameLabel")}
           </label>
           <TextField
@@ -190,6 +192,16 @@ export default function LoginPage() {
             sx={{
               backgroundColor: "white",
               borderRadius: "4px",
+              "& input::placeholder": {
+                color: "#6B7280",
+                opacity: 1,
+                fontSize: "0.875rem",
+              },
+              "& .MuiInputBase-input::placeholder": {
+                color: "#6B7280",
+                opacity: 1,
+                fontSize: "0.875rem",
+              },
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "gray",
@@ -204,14 +216,14 @@ export default function LoginPage() {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position="start" sx={{ mr: 1.5 }}>
                   <PersonOutlineIcon />
                 </InputAdornment>
               ),
             }}
           />
 
-          <label className="block font-bold text-gray-700 mb-1 mt-6">
+          <label className="block font-bold text-gray-500 mb-1 mt-6">
             {t("passwordLabel")}
           </label>
           <TextField
@@ -225,6 +237,16 @@ export default function LoginPage() {
             sx={{
               backgroundColor: "white",
               borderRadius: "4px",
+              "& input::placeholder": {
+                color: "#6B7280",
+                opacity: 1,
+                fontSize: "0.875rem",
+              },
+              "& .MuiInputBase-input::placeholder": {
+                color: "#6B7280",
+                opacity: 1,
+                fontSize: "0.875rem",
+              },
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "gray",
@@ -239,7 +261,7 @@ export default function LoginPage() {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position="start" sx={{ mr: 1.5 }}>
                   <KeyIcon className="rotate-325" />
                 </InputAdornment>
               ),
@@ -276,7 +298,7 @@ export default function LoginPage() {
               {t("login")}
             </Button>
 
-            <span className="text-sm text-gray-600 cursor-pointer hover:underline">
+            <span className="text-sm text-gray-500 cursor-pointer hover:underline">
               {t("forgotPassword")}
             </span>
           </div>

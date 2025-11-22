@@ -66,14 +66,14 @@ export default function LandingPage() {
       <div className="absolute top-6 right-12 z-50" ref={dropdownRef}>
         <div
           onClick={toggleDropdown}
-          className="flex items-center cursor-pointer select-none text-gray-400 font-medium"
+          className="flex items-center cursor-pointer select-none text-gray-500 font-medium"
         >
           <span>{language}</span>
-          <ExpandMoreIcon className="text-gray-500" />
+          <ExpandMoreIcon className="text-gray-600" />
         </div>
 
         {langDropdownOpen && (
-          <div className="absolute right-0 mt-1 w-32 bg-gray-200 shadow z-50">
+          <div className="absolute right-0 mt-1 w-32 bg-gray-200 shadow z-50 border border-gray-300 rounded-md overflow-hidden">
             <div
               className="w-full text-left px-4 py-2 hover:bg-gray-400 cursor-pointer"
               onClick={() => selectLanguage("en")}
@@ -94,14 +94,14 @@ export default function LandingPage() {
       <div className="w-1/3 flex flex-col justify-between p-15 bg-white">
         <div>
           <h1 className="text-red-500 m-0 text-4xl">{t("title")}</h1>
-          <p className="mt-2 ml-4 text-base text-gray-950">{t("subtitle")}</p>
+          <p className="mt-2 ml-4 text-base text-gray-800">{t("subtitle")}</p>
 
           <p className="mt-20 ml-4 text-3xl text-gray-800">{t("info1")}</p>
-          <p className="mt-5 ml-4 text-xl text-gray-700">{t("info2")}</p>
+          <p className="mt-5 ml-4 text-xl text-gray-800">{t("info2")}</p>
         </div>
 
         <p className="text-xl text-center">
-          <span className="font-light text-black">{t("trouble")} </span>
+          <span className="font-light text-gray-800">{t("trouble")} </span>
           <span className="font-bold underline cursor-pointer">
             {t("contactUs")}
           </span>
@@ -113,7 +113,7 @@ export default function LandingPage() {
         className="w-2/3 flex flex-col items-center justify-center relative px-35"
         style={{ background: "#EAEAEA" }}
       >
-        <h2 className="text-5xl font-bold mb-12 text-center text-[#5C5C5C]">
+        <h2 className="text-5xl font-bold mb-8 text-center text-[#5C5C5C]">
           {t("onboarding")}
         </h2>
 

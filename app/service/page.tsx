@@ -82,14 +82,14 @@ export default function ServicePage() {
       <div className="w-1/3 flex flex-col justify-between p-15 bg-white">
         <div>
           <h1 className="text-red-500 m-0 text-4xl">{t("title")}</h1>
-          <p className="mt-2 ml-4 text-base text-gray-950">{t("subtitle")}</p>
+          <p className="mt-2 ml-4 text-base text-gray-800">{t("subtitle")}</p>
 
           <p className="mt-20 ml-4 text-3xl text-gray-800">{t("info1")}</p>
-          <p className="mt-5 ml-4 text-xl text-gray-700">{t("info2")}</p>
+          <p className="mt-5 ml-4 text-xl text-gray-800">{t("info2")}</p>
         </div>
 
         <p className="text-xl text-center">
-          <span className="font-light text-black">{t("trouble")} </span>
+          <span className="font-thin text-gray-800">{t("trouble")} </span>
           <span className="font-bold underline cursor-pointer">
             {t("contactUs")}
           </span>
@@ -101,7 +101,7 @@ export default function ServicePage() {
         className="w-2/3 flex flex-col px-24 py-35"
         style={{ background: "#EAEAEA" }}
       >
-        <h2 className="text-2xl font-bold mb-2 text-gray-700">
+        <h2 className="text-2xl font-bold mb-2 text-[#5C5C5C]">
           {t("selectService")}
         </h2>
 
@@ -116,7 +116,7 @@ export default function ServicePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-700">
                     {t("service1.title")}
                   </h3>
                   <p className="text-gray-600 text-sm w-72 leading-snug">
@@ -126,7 +126,7 @@ export default function ServicePage() {
               </div>
 
               <div>
-                <span className="text-[#E86F5E] text-2xl">➜</span>
+                <span className="text-[#FF523B] text-2xl">➜</span>
               </div>
             </div>
           </div>
